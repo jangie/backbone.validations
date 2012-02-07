@@ -239,6 +239,10 @@ function createValidators(modelValidations) {
 
 var oldPerformValidation = Backbone.Model.prototype._performValidation;
 function newPerformValidation(attrs, options) {
+  if (!this.validatorEnabled){
+        return true;
+  }
+
   var errors = this.validate(attrs);
 
   if (errors) {
